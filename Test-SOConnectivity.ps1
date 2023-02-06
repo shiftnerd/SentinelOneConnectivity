@@ -68,11 +68,11 @@ $filter = @{
 	StartTime =  [datetime]::Today.AddDays(-1)
 	EndTime = [datetime]::Today
 }
-Get-WinEvent -FilterHashtable $filter -ErrorAction SilentlyContinue
+$ConnectionEvents = Get-WinEvent -FilterHashtable $filter -ErrorAction SilentlyContinue
             if(!$ConnectionEvents) {
-                Write-Host "No connection issue events found"
+                Write-Host "No connection issue events found in the last 24 hours."
         }else{
-            Write-Error -Message "Connection issue event logs found"
+            Write-Error -Message "Connection issue event logs found."
             Write-Error -Message "Event logs found: $ConnectionEvents"
         }
     }
